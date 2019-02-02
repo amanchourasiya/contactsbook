@@ -129,7 +129,7 @@ def get_password(username):
     return dao.get_password(username)
 
 @auth.error_handler
-def unauthorezed():
+def unauthorized():
     return make_response(jsonify({'error': 'unauthorized'}),401)
 
 api.add_resource(Contacts,'/contacts/api/v1.0', '/contacts/api/v1.0/<int:pageno>')
