@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-from flask import Flask,jsonify,make_response,request,abort
-from flask_restful import Api,Resource
+from flask import Flask,jsonify, make_response, request, abort
+from flask_restful import Api, Resource
 from flask_httpauth import HTTPBasicAuth
 from flask_caching import Cache
 import dao
@@ -9,7 +9,7 @@ import dao
 app   = Flask(__name__)
 api   = Api(app)
 auth  = HTTPBasicAuth()
-cache = Cache(app, config={'CACHE_TYPE':'redis'})
+cache = Cache(app, config={'CACHE_TYPE': 'redis'})
 
 
 class Contacts(Resource):
@@ -94,6 +94,7 @@ class ContactsByEmail(Resource):
         return make_response(jsonify({'result': 'success'}), 201)
 
     @auth.login_required
+    @cache.cached(timeout=60)
     def get(self,email,pageno=None):
         if pageno is None:
             print('pageno is none')
