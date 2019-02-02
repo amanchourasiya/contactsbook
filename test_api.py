@@ -1,6 +1,4 @@
 import requests,unittest
-from requests.auth import HTTPBasicAuth
-import json
 
 class TestContactsApi(unittest.TestCase):
     def test_get_contacts_by_email(self):
