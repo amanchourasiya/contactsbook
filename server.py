@@ -109,11 +109,11 @@ class ContactsByEmail(Resource):
         if not request.json :
             abort(400)
         if request.json['name'] and type(request.json['name']) is not str:
-            abort(401)
+            abort(400)
         if request.json['mobile'] and type(request.json['mobile']) is not str:
-            abort(401)
+            abort(400)
         if request.json['city'] and type(request.json['city']) is not str:
-            abort(401)
+            abort(400)
 
         dao.update_user_by_email(request.json['name'],email,request.json['mobile'],request.json['city'])
         return make_response(jsonify({'result':'success'}),201)
